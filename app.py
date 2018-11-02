@@ -1,11 +1,13 @@
 from flask import Flask, flash, render_template, request, redirect, url_for, session, abort
 import stripe
 import os
+import numpy as np
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from tabledef import *
 import json
+
 
 app = Flask(__name__)
 
@@ -14,6 +16,7 @@ stripe.api_key = 'sk_test_TMqJO4DLuAnqqSHRJsVwePH9'
 
 @app.route('/')
 def index():
+    # hot_drinks =
     return render_template('index.html', pub_key=pub_key)
 
 @app.route('/barista')
@@ -113,25 +116,6 @@ def pay():
     )
 
     return redirect(url_for('thanks'))
-
-"""
-@app.route('/')
-def home():
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    else:
-        return "Hello Boss!  <a href='/logout'>Logout</a>"
-"""
-
-"""
-@app.route('/login', methods=['POST'])
-def do_admin_login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
-        session['logged_in'] = True
-    else:
-        flash('wrong password!')
-    return home()
-"""
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
