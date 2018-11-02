@@ -16,8 +16,12 @@ stripe.api_key = 'sk_test_TMqJO4DLuAnqqSHRJsVwePH9'
 
 @app.route('/')
 def index():
-    # hot_drinks =
-    return render_template('index.html', pub_key=pub_key)
+    # Open JSON menu
+    with open('menu/hot_drinks.json') as f:
+        hot_drinks = json.load(f)
+    order = ["Hot Coffees","Hot Teas","Other"]
+
+    return render_template('index.html', pub_key=pub_key, food_items=hot_drinks, order=order)
 
 @app.route('/barista')
 def login():
@@ -97,11 +101,17 @@ def thanks():
 
 @app.route('/cold')
 def cold():
-    return render_template('cold.html')
+    with open('menu/cold_drinks.json') as f:
+        cold_drinks = json.load(f)
+    order = ["Iced Coffees","Iced Teas","Lemonades"]
+    return render_template('index.html',pub_key=pub_key,food_items=cold_drinks,order=order)
 
 @app.route('/food')
 def food():
-    return render_template('food.html')
+    with open('menu/food.json') as f:
+        food = json.load(f)
+    order = ["Savory","Sweet"]
+    return render_template('index.html',pub_key=pub_key,food_items=food,order=order)
 
 @app.route('/pay', methods=['POST'])
 def pay():
