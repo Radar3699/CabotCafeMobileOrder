@@ -10,7 +10,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 ### Adding
-
+"""
 user = User("chai_love_lucy")
 session.add(user)
 
@@ -19,7 +19,7 @@ session.add(user)
 
 user = User("cookie")
 session.add(user)
-
+"""
 
 ### Removing
 """
