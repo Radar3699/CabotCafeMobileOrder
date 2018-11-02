@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='narrow-jumbotron.css') }}" rel="stylesheet">
+  </head>
+
+  <!-- Main Body -->
+  <body>
+    <div class="container">
+      <div class="header clearfix">
+        <h3>
+          <img src= "/static/cafe_logo.png ">
+          <a class="text-muted" href="/barista"> Barista Dashboard </a> &nbsp;
+        </h3>
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link active" href="/logout"> Logout <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Item</th>
+            <th scope="col">Done</th>
+          </tr>
+        </thead>
+
+        {% for row in drinks %}
+        <tr>
+          <th scope = "row"> {{ row[0] }}</th>
+          <td> {{ row[1] }} </td>
+          <td>
+            <!--
+            <nav>
+              <ul class="nav nav-pills ">
+                <li class="nav-item">
+                  <a class="nav-link active" href="/barista"> Done <span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </nav>
+            -->
+            <form method="post" action="/refresh" class="inline">
+              <input type="hidden" name="id" value= {{row[0]}}>
+              <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                Done
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <footer class="footer">
+        <p>&copy; Duncan Stothers 2018</p>
+        <a href="http://www.facebook.com/cabotcafe"><img src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_32x32.png" ></a>
+        <a href="http://www.twitter.com/cabotcafe"><img src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_32x32.png"></a>
+        <a href="http://www.instagram.com/cabotcafe"><img src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_32x32.png"></a>
+      </footer>
+
+    </div>
+  </body>
+</html>

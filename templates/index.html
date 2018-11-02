@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='narrow-jumbotron.css') }}" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header clearfix">
+        <h3>
+          <img src= "/static/cafe_logo.png ">
+          <a class="text-muted" href="{{ url_for('index') }}">Hot Drinks </a> &nbsp;
+          <a class="text-muted" href="{{ url_for('cold') }}">Cold Drinks </a> &nbsp;
+          <a class="text-muted" href="{{ url_for('food') }}">Food </a> &nbsp;
+          <a class="text-muted" href="http://cabotcafe.com">About / Contact </a> &nbsp;
+        </h3>
+      </div>
+
+<!-- Main Item List -->
+      <div class="card">
+        <div class="card-body">
+          <h1 class="display-3">Hot Coffees</h1>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/americano.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Americano</h1>
+              <p class="lead">$2.50</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="250"
+                  data-name="Cabot Cafe"
+                  data-description="Americano"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/latte.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Latte</h1>
+              <p class="lead">$3.00</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="300"
+                  data-name="Cabot Cafe"
+                  data-description="Latte"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/mocha.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Mocha</h1>
+              <p class="lead">$3.50</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="350"
+                  data-name="Cabot Cafe"
+                  data-description="Mocha"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/nutella.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Nutella-Me-More</h1>
+              <p class="lead">$4.00</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="400"
+                  data-name="Cabot Cafe"
+                  data-description="Nutella-Me-More"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h1 class="display-3">Hot Teas</h1>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/teapot.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Tea Pot</h1>
+              <p class="lead">$5.00</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="500"
+                  data-name="Cabot Cafe"
+                  data-description="Tea Pot"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/teacup.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Tea Cup</h1>
+              <p class="lead">$2.00</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="200"
+                  data-name="Cabot Cafe"
+                  data-description="Tea Cup"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/matcha.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Matcha Latte</h1>
+              <p class="lead">$3.50</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="350"
+                  data-name="Cabot Cafe"
+                  data-description="Matcha Latte"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/chailovelucy.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Chai Love Lucy</h1>
+              <p class="lead">$3.00</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="300"
+                  data-name="Cabot Cafe"
+                  data-description="Chai Love Lucy"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/pinkberry.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Pinkberry</h1>
+              <p class="lead">$3.00</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="300"
+                  data-name="Cabot Cafe"
+                  data-description="Pinkberry"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/londonfog.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">London Fog</h1>
+              <p class="lead">$3.50</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="350"
+                  data-name="Cabot Cafe"
+                  data-description="London Fog"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/hotshot.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Hot Shot</h1>
+              <p class="lead">$3.50</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="350"
+                  data-name="Cabot Cafe"
+                  data-description="Hot Shot"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/darkchai.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Dark Chai</h1>
+              <p class="lead">$4.00</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="400"
+                  data-name="Cabot Cafe"
+                  data-description="Dark Chai"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h1 class="display-3">Other</h1>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/applecider.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Apple Cider</h1>
+              <p class="lead">$2.00</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="200"
+                  data-name="Cabot Cafe"
+                  data-description="Apple Cider"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/hotchocolate.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Hot Chocolate</h1>
+              <p class="lead">$2.50</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="250"
+                  data-name="Cabot Cafe"
+                  data-description="Hot Chocolate"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/vanillasteamer.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Vanilla Steamer</h1>
+              <p class="lead">$2.50</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="250"
+                  data-name="Cabot Cafe"
+                  data-description="Vanilla Steamer"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="/static/cloud9.jpg" />
+            </div>
+            <div class="col-md-6">
+              <h1 class="display-5">Cloud 9</h1>
+              <p class="lead">$3.00</p>
+              <form action="{{ url_for('pay') }}" method="POST">
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{ pub_key }}"
+                  data-amount="300"
+                  data-name="Cabot Cafe"
+                  data-description="Cloud 9"
+                  data-image="/static/cafe_logo_big.jpg"
+                  data-locale="auto">
+                </script>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Duncan Stothers 2018</p>
+        <a href="http://www.facebook.com/cabotcafe"><img src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_32x32.png" ></a>
+        <a href="http://www.twitter.com/cabotcafe"><img src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_32x32.png"></a>
+        <a href="http://www.instagram.com/cabotcafe"><img src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_32x32.png"></a>
+      </footer>
+
+    </div>
+  </body>
+</html>
