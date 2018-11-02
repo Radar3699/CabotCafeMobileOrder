@@ -2,6 +2,7 @@ from flask import Flask, flash, render_template, request, redirect, url_for, ses
 import stripe
 import os
 import numpy as np
+import json
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -15,27 +16,49 @@ stripe.api_key = 'sk_test_TMqJO4DLuAnqqSHRJsVwePH9'
 
 @app.route('/')
 def index():
-    # Open JSON menu
-    with open('menu/hot_drinks.json') as f:
-        hot_drinks = json.load(f)
-    order = ["Hot Coffees","Hot Teas","Other"]
-    return render_template('index.html', pub_key=pub_key, food_items=hot_drinks, order=order)
+    barista_flag = np.load('barista_flag.npy')[0]
+
+    if barista_flag == 1:
+        # Open JSON menu
+        with open('menu/hot_drinks.json') as f:
+            hot_drinks = json.load(f)
+        order = ["Hot Coffees","Hot Teas","Other"]
+        return render_template('index.html', pub_key=pub_key, food_items=hot_drinks, order=order)
+
+    else:
+        return redirect(url_for('closed'))
 
 @app.route('/cold')
 def cold():
-    # Open JSON menu
-    with open('menu/cold_drinks.json') as f:
-        cold_drinks = json.load(f)
-    order = ["Iced Coffees","Iced Teas","Lemonades"]
-    return render_template('index.html',pub_key=pub_key,food_items=cold_drinks,order=order)
+    barista_flag = np.load('barista_flag.npy')[0]
+
+    if barista_flag ==1:
+        # Open JSON menu
+        with open('menu/cold_drinks.json') as f:
+            cold_drinks = json.load(f)
+        order = ["Iced Coffees","Iced Teas","Lemonades"]
+        return render_template('index.html',pub_key=pub_key,food_items=cold_drinks,order=order)
+
+    else:
+        return redirect(url_for('closed'))
 
 @app.route('/food')
 def food():
-    # Open JSON menu
-    with open('menu/food.json') as f:
-        food = json.load(f)
-    order = ["Savory","Sweet"]
-    return render_template('index.html',pub_key=pub_key,food_items=food,order=order)
+    barista_flag = np.load('barista_flag.npy')[0]
+
+    if barista_flag == 1:
+        # Open JSON menu
+        with open('menu/food.json') as f:
+            food = json.load(f)
+        order = ["Savory","Sweet"]
+        return render_template('index.html',pub_key=pub_key,food_items=food,order=order)
+
+    else:
+        return redirect(url_for('closed'))
+
+@app.route('/closed')
+def closed():
+    return render_template('closed.html')
 
 @app.route('/barista')
 def login():
