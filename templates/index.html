@@ -34,6 +34,7 @@
         </div>
       </div>
         {% for (name,price,image) in food_items[type] %}
+        {% if price == 2.00 %}
         <div class="jumbotron">
           <div class="container">
             <div class="row">
@@ -43,7 +44,7 @@
               <div class="col-md-6">
                 <h1 class="display-5"> {{ name }} </h1>
                 <p class="lead"> {{ "$" + price|string }} </p>
-                <form action="{{ url_for('pay') }}" method="POST">
+                <form action="{{ url_for('pay200') }}" method="POST">
                   <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="{{ pub_key }}"
@@ -58,6 +59,163 @@
             </div>
           </div>
         </div>
+        {% endif %}
+        {% if price == 2.50 %}
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <img src= {{ "/static/" + image }} />
+              </div>
+              <div class="col-md-6">
+                <h1 class="display-5"> {{ name }} </h1>
+                <p class="lead"> {{ "$" + price|string }} </p>
+                <form action="{{ url_for('pay250') }}" method="POST">
+                  <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ pub_key }}"
+                    data-amount={{ ((price*100)|int)|string }}
+                    data-name="Cabot Cafe"
+                    data-description={{ name }}
+                    data-image="/static/cafe_logo_big.jpg"
+                    data-locale="auto">
+                  </script>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if price == 3.00 %}
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <img src= {{ "/static/" + image }} />
+              </div>
+              <div class="col-md-6">
+                <h1 class="display-5"> {{ name }} </h1>
+                <p class="lead"> {{ "$" + price|string }} </p>
+                <form action="{{ url_for('pay300') }}" method="POST">
+                  <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ pub_key }}"
+                    data-amount={{ ((price*100)|int)|string }}
+                    data-name="Cabot Cafe"
+                    data-description={{ name }}
+                    data-image="/static/cafe_logo_big.jpg"
+                    data-locale="auto">
+                  </script>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if price == 3.50 %}
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <img src= {{ "/static/" + image }} />
+              </div>
+              <div class="col-md-6">
+                <h1 class="display-5"> {{ name }} </h1>
+                <p class="lead"> {{ "$" + price|string }} </p>
+                <form action="{{ url_for('pay350') }}" method="POST">
+                  <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ pub_key }}"
+                    data-amount={{ ((price*100)|int)|string }}
+                    data-name="Cabot Cafe"
+                    data-description={{ name }}
+                    data-image="/static/cafe_logo_big.jpg"
+                    data-locale="auto">
+                  </script>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if price == 4.00 %}
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <img src= {{ "/static/" + image }} />
+              </div>
+              <div class="col-md-6">
+                <h1 class="display-5"> {{ name }} </h1>
+                <p class="lead"> {{ "$" + price|string }} </p>
+                <form action="{{ url_for('pay400') }}" method="POST">
+                  <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ pub_key }}"
+                    data-amount={{ ((price*100)|int)|string }}
+                    data-name="Cabot Cafe"
+                    data-description={{ name }}
+                    data-image="/static/cafe_logo_big.jpg"
+                    data-locale="auto">
+                  </script>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if price == 4.50 %}
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <img src= {{ "/static/" + image }} />
+              </div>
+              <div class="col-md-6">
+                <h1 class="display-5"> {{ name }} </h1>
+                <p class="lead"> {{ "$" + price|string }} </p>
+                <form action="{{ url_for('pay450') }}" method="POST">
+                  <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ pub_key }}"
+                    data-amount={{ ((price*100)|int)|string }}
+                    data-name="Cabot Cafe"
+                    data-description={{ name }}
+                    data-image="/static/cafe_logo_big.jpg"
+                    data-locale="auto">
+                  </script>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if price == 5.00 %}
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <img src= {{ "/static/" + image }} />
+              </div>
+              <div class="col-md-6">
+                <h1 class="display-5"> {{ name }} </h1>
+                <p class="lead"> {{ "$" + price|string }} </p>
+                <form action="{{ url_for('pay500') }}" method="POST">
+                  <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ pub_key }}"
+                    data-amount={{ ((price*100)|int)|string }}
+                    data-name="Cabot Cafe"
+                    data-description={{ name }}
+                    data-image="/static/cafe_logo_big.jpg"
+                    data-locale="auto">
+                  </script>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
         {% endfor %}
       {% endfor %}
 

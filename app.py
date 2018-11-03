@@ -125,18 +125,95 @@ def update():
 def thanks():
     return render_template('thanks.html')
 
-@app.route('/pay', methods=['POST'])
-def pay():
-
+@app.route('/pay200', methods=['POST'])
+def pay200():
     customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
 
     charge = stripe.Charge.create(
         customer=customer.id,
-        amount=19900,
+        amount=200,
         currency='usd',
-        description='The Product'
+        description='Cabot Cafe'
     )
+    print("\n pay 200 \n")
+    return redirect(url_for('thanks'))
 
+@app.route('/pay250', methods=['POST'])
+def pay250():
+    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=250,
+        currency='usd',
+        description='Cabot Cafe'
+    )
+    print("\n pay 250 \n")
+    return redirect(url_for('thanks'))
+
+@app.route('/pay300', methods=['POST'])
+def pay300():
+    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=300,
+        currency='usd',
+        description='Cabot Cafe'
+    )
+    print("\n pay 300 \n")
+    return redirect(url_for('thanks'))
+
+@app.route('/pay350', methods=['POST'])
+def pay350():
+    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=350,
+        currency='usd',
+        description='Cabot Cafe'
+    )
+    print("\n pay 350 \n")
+    return redirect(url_for('thanks'))
+
+@app.route('/pay400', methods=['POST'])
+def pay400():
+    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=400,
+        currency='usd',
+        description='Cabot Cafe'
+    )
+    print("\n pay 400 \n")
+    return redirect(url_for('thanks'))
+
+@app.route('/pay450', methods=['POST'])
+def pay450():
+    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=450,
+        currency='usd',
+        description='Cabot Cafe'
+    )
+    print("\n pay 450 \n")
+    return redirect(url_for('thanks'))
+
+@app.route('/pay500', methods=['POST'])
+def pay500():
+    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=500,
+        currency='usd',
+        description='Cabot Cafe'
+    )
+    print("\n pay 500 \n")
     return redirect(url_for('thanks'))
 
 if __name__ == '__main__':
