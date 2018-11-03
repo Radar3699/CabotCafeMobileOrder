@@ -3,7 +3,6 @@ import stripe
 import os
 import numpy as np
 import json
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from tabledef import *
