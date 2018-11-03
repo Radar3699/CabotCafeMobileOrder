@@ -15,6 +15,7 @@ stripe.api_key = 'sk_test_TMqJO4DLuAnqqSHRJsVwePH9'
 
 @app.route('/')
 def index():
+    # Define home page (hot drinks page)
     barista_flag = np.load('barista_flag.npy')[0]
 
     if barista_flag == 1:
@@ -29,6 +30,7 @@ def index():
 
 @app.route('/cold')
 def cold():
+    # Define cold drinks page
     barista_flag = np.load('barista_flag.npy')[0]
 
     if barista_flag ==1:
@@ -43,6 +45,7 @@ def cold():
 
 @app.route('/food')
 def food():
+    # Define food page
     barista_flag = np.load('barista_flag.npy')[0]
 
     if barista_flag == 1:
@@ -57,10 +60,14 @@ def food():
 
 @app.route('/closed')
 def closed():
+    # Define "we're closed" page
+    # To be redirected to when no barista is logged in
     return render_template('closed.html')
 
 @app.route('/barista')
 def login():
+    # Define barista login page
+    # Send to login page if not logged in else to dashboard
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
@@ -81,6 +88,7 @@ def login():
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
+    # Check credentials
     if request.form['password'] == '1000calories' and request.form['username'] == 'thinmint':
         session['logged_in'] = True
         return redirect(url_for('login'))
@@ -90,6 +98,7 @@ def do_admin_login():
 
 @app.route("/logout")
 def logout():
+    # Log barista out
     session['logged_in'] = False
 
     # Clear barista flag
@@ -99,6 +108,8 @@ def logout():
 
 @app.route("/refresh", methods=['POST'])
 def update():
+    # Remove finished drink from database of orders
+    # To be called when barista presses 'done' on an order
     print(" \n Removing \n ", request.form['id'])
     id_to_remove = int(request.form['id'])
 
@@ -122,97 +133,22 @@ def update():
 
 @app.route('/thanks')
 def thanks():
+    # Define thanks page
     return render_template('thanks.html')
 
-@app.route('/pay200', methods=['POST'])
-def pay200():
+@app.route('/pay/<string:order_name>/<string:order_amount>', methods=['POST'])
+def pay(order_name,order_amount):
+    # Create stripe payment
+    # Stripe payment button calls this
     customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
 
     charge = stripe.Charge.create(
         customer=customer.id,
-        amount=200,
+        amount=int(order_amount),
         currency='usd',
-        description='Cabot Cafe'
+        description=order_name
     )
-    print("\n pay 200 \n")
-    return redirect(url_for('thanks'))
-
-@app.route('/pay250', methods=['POST'])
-def pay250():
-    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
-
-    charge = stripe.Charge.create(
-        customer=customer.id,
-        amount=250,
-        currency='usd',
-        description='Cabot Cafe'
-    )
-    print("\n pay 250 \n")
-    return redirect(url_for('thanks'))
-
-@app.route('/pay300', methods=['POST'])
-def pay300():
-    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
-
-    charge = stripe.Charge.create(
-        customer=customer.id,
-        amount=300,
-        currency='usd',
-        description='Cabot Cafe'
-    )
-    print("\n pay 300 \n")
-    return redirect(url_for('thanks'))
-
-@app.route('/pay350', methods=['POST'])
-def pay350():
-    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
-
-    charge = stripe.Charge.create(
-        customer=customer.id,
-        amount=350,
-        currency='usd',
-        description='Cabot Cafe'
-    )
-    print("\n pay 350 \n")
-    return redirect(url_for('thanks'))
-
-@app.route('/pay400', methods=['POST'])
-def pay400():
-    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
-
-    charge = stripe.Charge.create(
-        customer=customer.id,
-        amount=400,
-        currency='usd',
-        description='Cabot Cafe'
-    )
-    print("\n pay 400 \n")
-    return redirect(url_for('thanks'))
-
-@app.route('/pay450', methods=['POST'])
-def pay450():
-    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
-
-    charge = stripe.Charge.create(
-        customer=customer.id,
-        amount=450,
-        currency='usd',
-        description='Cabot Cafe'
-    )
-    print("\n pay 450 \n")
-    return redirect(url_for('thanks'))
-
-@app.route('/pay500', methods=['POST'])
-def pay500():
-    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
-
-    charge = stripe.Charge.create(
-        customer=customer.id,
-        amount=500,
-        currency='usd',
-        description='Cabot Cafe'
-    )
-    print("\n pay 500 \n")
+    print("\n pay " + order_amount + " for " + order_name + " \n")
     return redirect(url_for('thanks'))
 
 if __name__ == '__main__':
