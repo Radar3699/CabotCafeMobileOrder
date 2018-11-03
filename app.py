@@ -66,7 +66,7 @@ def closed():
 
 @app.route('/barista')
 def login():
-    # Define barista login page
+    # Define barista dashboard / login route
     # Send to login page if not logged in else to dashboard
     if not session.get('logged_in'):
         return render_template('login.html')
@@ -138,10 +138,11 @@ def thanks():
 
 @app.route('/pay/<string:order_name>/<string:order_amount>', methods=['POST'])
 def pay(order_name,order_amount):
-    # Create stripe payment
+    # Create payment
     # Stripe payment button calls this
-    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
 
+    # Create stripe charge
+    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
     charge = stripe.Charge.create(
         customer=customer.id,
         amount=int(order_amount),
@@ -149,6 +150,16 @@ def pay(order_name,order_amount):
         description=order_name
     )
     print("\n pay " + order_amount + " for " + order_name + " \n")
+
+    # Add order to database
+    engine = create_engine('sqlite:///drinks.db', echo=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    user = User(order_name)
+    session.add(user)
+    session.commit()
+
+    # Push to thanks page
     return redirect(url_for('thanks'))
 
 if __name__ == '__main__':
