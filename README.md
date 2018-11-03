@@ -8,13 +8,13 @@ The system is optimized for mobile, simplicity, maintainability, and customizabi
 
 By default when no barista is logged in users are redirected to a "we're closed" page which lists hours.
 
-![alt text](https://github.com/Radar3699/CabotCafeMobileOrder/blob/master/demos/P1.png)
+![alt text](https://github.com/Radar3699/CabotCafeMobileOrder/blob/master/demos/P2.png)
 
 ![alt text](https://github.com/Radar3699/CabotCafeMobileOrder/blob/master/demos/V1.png)
 
 When a barista starts a shift they go to `/barista` on safari on the ipad and log in. 
 
-![alt text](https://github.com/Radar3699/CabotCafeMobileOrder/blob/master/demos/P2.png)
+![alt text](https://github.com/Radar3699/CabotCafeMobileOrder/blob/master/demos/P1.png)
 
 After logging in `/barista` then redirects to the dashboard
 
@@ -22,7 +22,7 @@ After logging in `/barista` then redirects to the dashboard
 
 The dashboard will auto-refresh every 5 seconds, checking the order queue database every time. Thus new orders will 'appear' spontaneously on the ipad when placed by customers. When the order is done the barista presses done to clear that order from the database.
 
-When the barista is logged in, users can reach the hot drinks, cold drinks, and food pages. 
+When the barista is logged in the home page and tabs will direct to the hot drinks, cold drinks, and food pages instead of redirected to the closed page.
 
 ![alt text](https://github.com/Radar3699/CabotCafeMobileOrder/blob/master/demos/V3.png)
 
