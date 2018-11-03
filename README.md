@@ -22,7 +22,7 @@ After logging in `/barista` then redirects to the dashboard
 
 The dashboard will auto-refresh every 5 seconds, checking the order queue database every time. Thus new orders will 'appear' spontaneously on the ipad when placed by customers. When the order is done the barista presses done to clear that order from the database.
 
-When the barista is logged in the home page and tabs will direct to the hot drinks, cold drinks, and food pages instead of redirected to the closed page.
+When the barista is logged in the home page and tabs will direct to the hot drinks, cold drinks, and food pages instead of directing to the closed page.
 
 ![alt text](https://github.com/Radar3699/CabotCafeMobileOrder/blob/master/demos/V3.png)
 
