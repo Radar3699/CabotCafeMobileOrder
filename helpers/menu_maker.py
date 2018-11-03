@@ -1,3 +1,12 @@
+"""
+menu_maker.py
+Modify this, move to root directory, and run `python menu_maker.py` to change the menu
+Place pictures of items (.jpg or .png) in the static folder
+
+Created by Duncan Stothers in 2018 at Harvard University for Cabot Cafe
+Licensed under MIT License
+"""
+
 import json
 
 ### Hot Drinks

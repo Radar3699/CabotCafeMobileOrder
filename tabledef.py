@@ -1,3 +1,11 @@
+"""
+tabledef.py
+Defines the database for SQLalchemy
+
+Created by Duncan Stothers in 2018 at Harvard University for Cabot Cafe
+Licensed under MIT License
+"""
+
 from sqlalchemy import *
 from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy import Column, Date, Integer, String

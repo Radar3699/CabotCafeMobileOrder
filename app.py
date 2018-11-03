@@ -1,3 +1,11 @@
+"""
+app.py
+The primary controller for Cabot Cafe's mobile order website
+
+Created by Duncan Stothers in 2018 at Harvard University for Cabot Cafe
+Licensed under MIT License
+"""
+
 from flask import Flask, flash, render_template, request, redirect, url_for, session, abort
 import stripe
 import os
