@@ -15,6 +15,7 @@ from sqlalchemy.orm import relationship, backref
 engine = create_engine('sqlite:///drinks.db', echo=True)
 Base = declarative_base()
 
+# Define table with just one row for drink names
 class User(Base):
 
     __tablename__ = "drinks"

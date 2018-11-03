@@ -17,7 +17,7 @@ engine = create_engine('sqlite:///drinks.db', echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-### Adding
+### Adding (uncomment to add to database)
 """
 user = User("chai_love_lucy")
 session.add(user)
@@ -29,18 +29,15 @@ user = User("cookie")
 session.add(user)
 """
 
-### Removing
+### Removing (uncomment to get and remove from database)
 """
 drink = session.query(User).get(1)
 session.delete(drink)
 """
 
-
-
-# commit the record the database
+### Commit the record the database
 session.commit()
 
-session.commit()
 
 
 
