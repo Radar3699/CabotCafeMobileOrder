@@ -82,7 +82,7 @@ Licensed under MIT License
               <div class="col-md-6">
                 <h1 class="display-5"> {{ name }} </h1>
                 <p class="lead"> {{ "$" + price|string }} </p>
-                <form action="{{ '/pay/' + name|string + '/' + (price*100)|int|string }}" method="POST">
+<!--                 <form action="{{ '/pay/' + name|string + '/' + (price*100)|int|string }}" method="POST">
                   <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="{{ pub_key }}"
@@ -92,7 +92,34 @@ Licensed under MIT License
                     data-image="/static/cafe_logo_big.jpg"
                     data-locale="auto">
                   </script>
+                </form> -->
+
+                <!-- Pay at pickup button -->
+                <form method="post" action="{{ '/pay_later/' + name|string + '/' + (price*100)|int|string }}"class="inline">
+                  <button type="submit" class="btn btn-secondary mb-3" name="submit_param" value="submit_value">Pay at Pickup</button>
                 </form>
+
+                <!-- Pay with card button -->
+                <form action="{{ '/pay/' + name|string + '/' + (price*100)|int|string }}" method="POST">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="{{ pub_key }}"
+                        data-amount={{ ((price*100)|int)|string }}
+                        data-name="Cabot Cafe"
+                        data-description={{ name }}
+                        data-image="/static/cafe_logo_big.jpg"
+                        data-locale="auto">
+                    </script>
+                    <script>
+                        //divsToHide is an array
+                        var divsToHide = document.getElementsByClassName("stripe-button-el");
+                        //set default stripe buttons to hidden
+                        for(var i = 0; i < divsToHide.length; i++){
+                            divsToHide[i].style.display = "none";
+                        }
+                    </script>
+                    <button type="submit" class="btn btn-secondary btn-xs">Pay with Card</button>
+                </form>
+
               </div>
             </div>
           </div>

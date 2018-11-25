@@ -148,24 +148,37 @@ def logout():
 def update():
     # Remove finished drink from database of orders
     # To be called when barista presses 'done' on an order
-    print(" \n Removing \n ", request.form['id'])
+    print(" \n Removing \n ", request.form['id'], " from ", request.form['database'],"\n")
     id_to_remove = int(request.form['id'])
+    database_to_remove_from = request.form['database']
 
-    # Remove from database
-    engine = create_engine('sqlite:///drinks.db', echo=True)
-    DBSession = sessionmaker(bind=engine)
-    dbsession = DBSession()
-    drink = dbsession.query(User).get(id_to_remove)
-    print(" Removing drink: ", drink)
-    dbsession.delete(drink)
-    dbsession.commit()
+    if database_to_remove_from == 'drinks':
+        # Remove from drinks.db database
+        engine = create_engine('sqlite:///drinks.db', echo=True)
+        DBSession = sessionmaker(bind=engine)
+        dbsession = DBSession()
+        drink = dbsession.query(User).get(id_to_remove)
+        print("\n\n\n\n\n\n drinks database \n\n\n\n\n\n")
+        print("\n\n\n\n", id_to_remove, "\n\n\n\n")
+        dbsession.delete(drink)
+        dbsession.commit()
+    else:
+        # Remove from drinks_paid.db database
+        engine = create_engine('sqlite:///drinks_paid.db', echo=True)
+        DBSession = sessionmaker(bind=engine)
+        dbsession = DBSession()
+        drink = dbsession.query(User).get(id_to_remove)
+        print("\n\n\n\n\n\n drinks_paid database \n\n\n\n\n\n")
+        print("\n\n\n\n", id_to_remove, "\n\n\n\n")
+        dbsession.delete(drink)
+        dbsession.commit()
 
-    # Get database data
-    data = dbsession.query(User).all()
-    drinks = []
-    for row in data:
-        drinks.append([row.id,row.name])
-    dbsession.close()
+    # # Get database data
+    # data = dbsession.query(User).all()
+    # drinks = []
+    # for row in data:
+    #     drinks.append([row.id,row.name])
+    # dbsession.close()
 
     return redirect(url_for('login')) # Barista dash
 
@@ -178,6 +191,7 @@ def thanks():
 def pay(order_name,order_amount):
     # Create payment
     # Stripe payment button calls this
+    print("\n\n\n\n\n\n\n\n\n\n\n\n")
 
     # Create stripe charge
     customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
@@ -190,12 +204,28 @@ def pay(order_name,order_amount):
     print("\n pay " + order_amount + " for " + order_name + " \n")
 
     # Add order to database
+    engine = create_engine('sqlite:///drinks_paid.db', echo=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    user = User(order_name)
+    session.add(user)
+    session.commit()
+    session.close()
+
+    # Push to thanks page
+    return redirect(url_for('thanks'))
+
+@app.route('/pay_later/<string:order_name>/<string:order_amount>', methods=['POST'])
+def pay_later(order_name,order_amount):
+
+    # Add order to database
     engine = create_engine('sqlite:///drinks.db', echo=True)
     Session = sessionmaker(bind=engine)
     session = Session()
     user = User(order_name)
     session.add(user)
     session.commit()
+    session.close()
 
     # Push to thanks page
     return redirect(url_for('thanks'))

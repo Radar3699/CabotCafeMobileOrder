@@ -45,46 +45,12 @@ Licensed under MIT License
 <div class="row row-equal-height">
 
   <!-- Left Column -->
-  <div class="col-xs-6 mr-5" id="left">
+  <div class="col" id="left">
     <div class="card">
       <div class="card-body">
         <h5 class="display-5 text-center">Already Paid</h5>
       </div>
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">Item</th>
-          <th scope="col">Clear</th>
-        </tr>
-      </thead>
-
-      {% for row in drinks %}
-      <tr>
-        <th scope = "row"> {{ row[0] }}</th>
-        <td> {{ row[1] }} </td>
-        <td>
-          <form method="post" action="/refresh" class="inline">
-            <input type="hidden" name="id" value= {{row[0]}}>
-            <button type="submit" name="submit_param" value="submit_value" class="link-button">
-              Done
-            </button>
-          </form>
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
-
-  <!-- Right Column -->
-  <div class="col-xs-6" id="right">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="display-5 text-center">Pay at Pickup</h5>
-      </div>
-    </div>
-
     <table class="table">
       <thead>
         <tr>
@@ -101,7 +67,43 @@ Licensed under MIT License
         <td>
           <form method="post" action="/refresh" class="inline">
             <input type="hidden" name="id" value= {{row[0]}}>
-            <button type="submit" name="submit_param" value="submit_value" class="link-button">
+            <input type="hidden" name="database" value= "drinks_paid">
+            <button type="submit" class="btn btn-secondary" name="submit_param" value="submit_value">
+              Done
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <!-- Right Column -->
+  <div class="col" id="right">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="display-5 text-center">Pay at Pickup</h5>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Item</th>
+          <th scope="col">Clear</th>
+        </tr>
+      </thead>
+
+      {% for row in drinks %}
+      <tr>
+        <th scope = "row"> {{ row[0] }}</th>
+        <td> {{ row[1] }} </td>
+        <td>
+          <form method="post" action="/refresh" class="inline">
+            <input type="hidden" name="id" value= {{row[0]}}>
+            <input type="hidden" name="database" value= "drinks">
+            <button type="submit" class="btn btn-secondary" name="submit_param" value="submit_value">
               Done
             </button>
           </form>
