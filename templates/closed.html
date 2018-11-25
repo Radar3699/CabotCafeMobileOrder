@@ -19,6 +19,14 @@ Licensed under MIT License
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='narrow-jumbotron.css') }}" rel="stylesheet">
+
+    <!-- Redirect mobile users -->
+      <script type="text/javascript">
+      if (screen.width <= 699) {
+      document.location = "closed_mobile";
+      }
+      </script>
+
   </head>
 
   <body>
@@ -26,12 +34,11 @@ Licensed under MIT License
       <div class="header clearfix">
         <h3>
           <img src= "/static/cafe_logo.png ">
-          <a class="text-muted" href="{{ url_for('index') }}">Favorites </a> &nbsp;
-          <a class="text-muted" href="{{ url_for('index') }}">Hot </a> &nbsp;
-          <a class="text-muted" href="{{ url_for('cold') }}">Cold </a> &nbsp;
+          <a class="text-muted" href="{{ url_for('favorites') }}">Favorites </a> &nbsp;
+          <a class="text-muted" href="{{ url_for('index') }}">Hot Drinks</a> &nbsp;
+          <a class="text-muted" href="{{ url_for('cold') }}">Cold Drinks</a> &nbsp;
           <a class="text-muted" href="{{ url_for('food') }}">Food </a> &nbsp;
           <a class="text-muted" href="http://cabotcafe.com">About </a> &nbsp;
-          <a href="https://github.com/Radar3699/CabotCafeMobileOrder"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
         </h3>
       </div>
 
@@ -43,7 +50,7 @@ Licensed under MIT License
 
       <div class="card">
         <div class="card-body">
-          <h1 class="display-5">Our standard hours are Sunday-Thursday 8pm - 1am.</h1>
+          <h1 class="display-5">Our standard hours are Sunday-Thursday, 8pm - 1am.</h1>
         </div>
       </div>
 

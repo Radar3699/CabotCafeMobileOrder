@@ -94,7 +94,7 @@ food["Sweet"] = [\
 favorites = {}
 
 # Favorites
-favorites["favorites"] = [\
+favorites["Favorites"] = [\
 ("Tai Chi Chai Tea",3.00,"taichichaitea.jpg"),\
 ("Chai Love Lucy",3.00,"chailovelucy.jpg"),\
 ("Iced Matcha",4.00,"icedmatcha.jpg"),\

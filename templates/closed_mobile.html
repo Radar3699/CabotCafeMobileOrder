@@ -1,6 +1,6 @@
 <!--
-thanks.html
-Defines the thank you page
+closed_mobile.html
+Defines the closed page
 
 Created by Duncan Stothers in 2018 at Harvard University for Cabot Cafe
 Licensed under MIT License
@@ -19,41 +19,49 @@ Licensed under MIT License
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='narrow-jumbotron.css') }}" rel="stylesheet">
-
-    <script type="text/javascript">
-    if (screen.width <= 699) {
-    document.location = "thanks_mobile";
-    }
-    </script>
   </head>
 
   <body>
     <div class="container">
       <div class="header clearfix">
-        <h3>
-          <img src= "/static/cafe_logo.png ">
-          <a class="text-muted" href="{{ url_for('favorites') }}">Favorites </a> &nbsp;
-          <a class="text-muted" href="{{ url_for('index') }}">Hot Drinks</a> &nbsp;
-          <a class="text-muted" href="{{ url_for('cold') }}">Cold Drinks</a> &nbsp;
-          <a class="text-muted" href="{{ url_for('food') }}">Food </a> &nbsp;
-          <a class="text-muted" href="http://cabotcafe.com">About </a> &nbsp;
-        </h3>
-      </div>
 
-<!-- Main message -->
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+          <div class="collapse navbar-collapse">
+            <img class="rounded mx-auto d-block img-fluid mt-2" src= "/static/cafe_logo_big.jpg " width = "80" height= "80">
+            <h5 class="text-center text-light mr-3 ml-3" text-color="white">Cabot Cafe Mobile Order</h5>
+          </div>
+        </nav>
+
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('favorites') }}">Favorites</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('index') }}">Hot</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('cold') }}">Cold</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('food') }}">Food</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
       <div class="card">
         <div class="card-body">
-          <h1 class="display-1">Thanks!</h1>
+          <h5 class="display-5">Cabot Cafe is not accepting mobile orders at the moment.</h5>
         </div>
       </div>
 
-        <div class="jumbotron">
-          <div class="container">
-            <div class="row">
-                <h1 class="display-5"> Pickup your order at 60 Linnaean St. </h1>
-            </div>
-          </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="display-5">Our standard hours are Sunday-Thursday, 8pm - 1am.</h5>
         </div>
+      </div>
 
       <footer class="footer">
         <p>&copy; Duncan Stothers 2018</p>

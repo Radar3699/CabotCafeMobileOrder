@@ -19,51 +19,37 @@ Licensed under MIT License
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='narrow-jumbotron.css') }}" rel="stylesheet">
-
-    <!-- Redirect mobile users -->
-    {% if (name == 'favorites') %}
-      <script type="text/javascript">
-      if (screen.width <= 699) {
-      document.location = "favorites_mobile";
-      }
-      </script>
-    {% endif %}
-    {% if (name == 'hot') %}
-      <script type="text/javascript">
-      if (screen.width <= 699) {
-      document.location = "hot_mobile";
-      }
-      </script>
-    {% endif %}
-    {% if (name == 'cold') %}
-      <script type="text/javascript">
-      if (screen.width <= 699) {
-      document.location = "cold_mobile";
-      }
-      </script>
-    {% endif %}
-    {% if (name == 'food') %}
-      <script type="text/javascript">
-      if (screen.width <= 699) {
-      document.location = "food_mobile";
-      }
-      </script>
-    {% endif %}
   </head>
-
 
   <body>
     <div class="container">
       <div class="header clearfix">
-        <h3>
-          <img src= "/static/cafe_logo.png ">
-          <a class="text-muted" href="{{ url_for('favorites') }}">Favorites </a> &nbsp;
-          <a class="text-muted" href="{{ url_for('index') }}">Hot Drinks</a> &nbsp;
-          <a class="text-muted" href="{{ url_for('cold') }}">Cold Drinks</a> &nbsp;
-          <a class="text-muted" href="{{ url_for('food') }}">Food </a> &nbsp;
-          <a class="text-muted" href="http://cabotcafe.com">About </a> &nbsp;
-        </h3>
-      </div>
+
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+          <div class="collapse navbar-collapse">
+            <img class="rounded mx-auto d-block img-fluid mt-2" src= "/static/cafe_logo_big.jpg " width = "80" height= "80">
+            <h5 class="text-center text-light mr-3 ml-3" text-color="white">Cabot Cafe Mobile Order</h5>
+          </div>
+        </nav>
+
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <h6 class="nav-link" href="#">Favorites</h6>
+              </li>
+              <li class="nav-item">
+                <h6 class="nav-link" href="#">Hot</h6>
+              </li>
+              <li class="nav-item">
+                <h6 class="nav-link" href="#">Cold</h6>
+              </li>
+              <li class="nav-item">
+                <h6 class="nav-link" href="#">Food</h6>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
 <!-- Main item list -->
       {% for type in order %}

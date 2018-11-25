@@ -21,6 +21,7 @@ app = Flask(__name__)
 pub_key = 'pk_test_SF586n7bKRisyBDkWxVyTrbL'
 stripe.api_key = 'sk_test_TMqJO4DLuAnqqSHRJsVwePH9'
 
+### Standard routes
 @app.route('/favorites')
 def favorites():
     # Define favorites drinks page
@@ -31,7 +32,8 @@ def favorites():
         with open('menu/favorites.json') as f:
             favorites = json.load(f)
         order = ["Favorites"]
-        return render_template('index.html',pub_key=pub_key,food_items=favorites,order=order)
+        name="favorites"
+        return render_template('index.html',pub_key=pub_key,food_items=favorites,order=order,name=name)
 
     else:
         return redirect(url_for('closed'))
@@ -46,7 +48,8 @@ def index():
         with open('menu/hot_drinks.json') as f:
             hot_drinks = json.load(f)
         order = ["Hot Coffees","Hot Teas","Other"]
-        return render_template('index.html', pub_key=pub_key, food_items=hot_drinks, order=order)
+        name = "hot"
+        return render_template('index.html', pub_key=pub_key, food_items=hot_drinks, order=order,name=name)
 
     else:
         return redirect(url_for('closed'))
@@ -61,7 +64,8 @@ def cold():
         with open('menu/cold_drinks.json') as f:
             cold_drinks = json.load(f)
         order = ["Iced Coffees","Iced Teas","Lemonades"]
-        return render_template('index.html',pub_key=pub_key,food_items=cold_drinks,order=order)
+        name = "cold"
+        return render_template('index.html',pub_key=pub_key,food_items=cold_drinks,order=order,name=name)
 
     else:
         return redirect(url_for('closed'))
@@ -76,11 +80,13 @@ def food():
         with open('menu/food.json') as f:
             food = json.load(f)
         order = ["Savory","Sweet"]
-        return render_template('index.html',pub_key=pub_key,food_items=food,order=order)
+        name = "food"
+        return render_template('index.html',pub_key=pub_key,food_items=food,order=order,name=name)
 
     else:
         return redirect(url_for('closed'))
 
+### Functional routes
 @app.route('/closed')
 def closed():
     # Define "we're closed" page
@@ -184,6 +190,76 @@ def pay(order_name,order_amount):
 
     # Push to thanks page
     return redirect(url_for('thanks'))
+
+### Mobile routes
+@app.route('/favorites_mobile')
+def favorites_mobile():
+    # Define favorites drinks page
+    barista_flag = np.load('barista_flag.npy')[0]
+
+    if barista_flag ==1:
+        # Open JSON menu
+        with open('menu/favorites.json') as f:
+            favorites = json.load(f)
+        order = ["Favorites"]
+        return render_template('index_mobile.html',pub_key=pub_key,food_items=favorites,order=order)
+
+    else:
+        return redirect(url_for('closed'))
+
+@app.route('/hot_mobile')
+def hot_mobile():
+    # Define favorites drinks page
+    barista_flag = np.load('barista_flag.npy')[0]
+
+    if barista_flag ==1:
+        # Open JSON menu
+        with open('menu/hot_drinks.json') as f:
+            hot_drinks = json.load(f)
+        order = ["Hot Coffees","Hot Teas","Other"]
+        return render_template('index_mobile.html', pub_key=pub_key, food_items=hot_drinks, order=order)
+    else:
+        return redirect(url_for('closed'))
+
+@app.route('/cold_mobile')
+def cold_mobile():
+    # Define favorites drinks page
+    barista_flag = np.load('barista_flag.npy')[0]
+
+    if barista_flag ==1:
+        # Open JSON menu
+        with open('menu/cold_drinks.json') as f:
+            cold_drinks = json.load(f)
+        order = ["Iced Coffees","Iced Teas","Lemonades"]
+        return render_template('index_mobile.html',pub_key=pub_key,food_items=cold_drinks,order=order)
+    else:
+        return redirect(url_for('closed'))
+
+@app.route('/food_mobile')
+def food_mobile():
+    # Define food page
+    barista_flag = np.load('barista_flag.npy')[0]
+
+    if barista_flag == 1:
+        # Open JSON menu
+        with open('menu/food.json') as f:
+            food = json.load(f)
+        order = ["Savory","Sweet"]
+        return render_template('index_mobile.html',pub_key=pub_key,food_items=food,order=order)
+
+    else:
+        return redirect(url_for('closed'))
+
+@app.route('/thanks_mobile')
+def thanks_mobile():
+    # Define thanks page for mobile
+    return render_template('thanks_mobile.html')
+
+@app.route('/closed_mobile')
+def closed_mobile():
+    # Define "we're closed" page
+    # To be redirected to when no barista is logged in
+    return render_template('closed_mobile.html')
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
