@@ -113,7 +113,16 @@ def login():
         for row in data:
             drinks.append([row.id,row.name])
 
-        return render_template('dashboard.html', drinks=drinks) # Barista dash
+        engine = create_engine('sqlite:///drinks_paid.db', echo=True)
+        DBSession = sessionmaker(bind=engine)
+        dbsession = DBSession()
+
+        data = dbsession.query(User).all()
+        drinks_paid = []
+        for row in data:
+            drinks_paid.append([row.id,row.name])
+
+        return render_template('dashboard.html', drinks=drinks, drinks_paid=drinks_paid) # Barista dash
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
