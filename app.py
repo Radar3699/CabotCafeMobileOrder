@@ -21,6 +21,21 @@ app = Flask(__name__)
 pub_key = 'pk_test_SF586n7bKRisyBDkWxVyTrbL'
 stripe.api_key = 'sk_test_TMqJO4DLuAnqqSHRJsVwePH9'
 
+@app.route('/favorites')
+def favorites():
+    # Define favorites drinks page
+    barista_flag = np.load('barista_flag.npy')[0]
+
+    if barista_flag ==1:
+        # Open JSON menu
+        with open('menu/favorites.json') as f:
+            favorites = json.load(f)
+        order = ["Favorites"]
+        return render_template('index.html',pub_key=pub_key,food_items=favorites,order=order)
+
+    else:
+        return redirect(url_for('closed'))
+
 @app.route('/')
 def index():
     # Define home page (hot drinks page)

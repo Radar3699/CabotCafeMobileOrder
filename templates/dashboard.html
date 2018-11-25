@@ -29,16 +29,13 @@ Licensed under MIT License
       <div class="header clearfix">
         <h3>
           <img src= "/static/cafe_logo.png ">
-          <a class="text-muted" href="/barista"> Barista Dashboard </a> &nbsp;
+          <a class="text-muted" href="{{ url_for('index') }}">Favorites </a> &nbsp;
+          <a class="text-muted" href="{{ url_for('index') }}">Hot </a> &nbsp;
+          <a class="text-muted" href="{{ url_for('cold') }}">Cold </a> &nbsp;
+          <a class="text-muted" href="{{ url_for('food') }}">Food </a> &nbsp;
+          <a class="text-muted" href="http://cabotcafe.com">About </a> &nbsp;
           <a href="https://github.com/Radar3699/CabotCafeMobileOrder"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
         </h3>
-        <nav>
-          <ul class="nav nav-pills float-right">
-            <li class="nav-item">
-              <a class="nav-link active" href="/logout"> Logout <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-        </nav>
       </div>
 
       <table class="table">
